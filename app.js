@@ -48,14 +48,14 @@ app.delete("/deleteShop", (req, res) => {
 });
 
 app.patch("/updateShop", (req, res) => {
-  if (req.query._id){
+  if (req.body._id){
     if (req.body.hasOwnProperty("shop") || req.body.hasOwnProperty("price") || req.body.hasOwnProperty("date")) {
       Buy.updateOne({ _id: req.body._id }, req.body).then((result) => {
         Buy.find().then((result) => {
           res.send({ data: result });
         });
       });
-    }else {
+    } else {
       res.status(404).send("Error");
     }
   } else {
